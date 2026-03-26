@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Court Performance Lab — Elite Tennis Coaching, Los Angeles</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #001133;
+  --royal: #0055C8;
+  --electric: #1A8FFF;
+  --sky: #58B4FF;
+  --ice: #B8DEFF;
+  --white: #ffffff;
+  --off: #F4F8FF;
+  --muted: #5a80b0;
+  --border: rgba(88,180,255,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── TYPE ── */
+h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 4rem;
+  background: rgba(0,17,51,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  animation: fadeDown 0.6s ease both;
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--sky); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--electric);
+  color: var(--white);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Instrument Sans', sans-serif;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--sky); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative;
+  padding: 8rem 4rem 5rem;
+  overflow: hidden;
+}
+
+/* Court lines background */
+.hero-bg {
+  position: absolute; inset: 0;
+  background: var(--navy);
+  overflow: hidden;
+}
+.court-bg {
+  position: absolute;
+  bottom: -10%; right: -5%;
+  width: 65%; aspect-ratio: 1.5;
+  opacity: 0.06;
+  animation: fadeIn 1.2s 0.3s both;
+}
+.hero-glow {
+  position: absolute;
+  top: 20%; right: 10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(26,143,255,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute;
+  bottom: 10%; left: 5%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(88,180,255,0.08) 0%, transparent 70%);
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sky);
+  background: rgba(88,180,255,0.1);
+  border: 1px solid rgba(88,180,255,0.25);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 1.75rem;
+  animation: fadeUp 0.7s 0.1s both;
+}
+.kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--electric); animation: pulse 2s infinite; }
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.7s 0.2s both;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--electric), var(--sky));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 540px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.7s 0.3s both;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex; align-items: center; gap: 1rem;
+  animation: fadeUp 0.7s 0.4s both;
+}
+.btn-primary {
+  background: var(--electric);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none; cursor: pointer;
+  font-family: 'Instrument Sans', sans-serif;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--sky); transform: translateY(-1px); }
+.btn-ghost {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: white; }
+.btn-ghost svg { transition: transform 0.2s; }
+.btn-ghost:hover svg { transform: translateX(3px); }
+
+.hero-proof {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.7s 0.5s both;
+}
+.proof-stat { }
+.proof-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.proof-num span { color: var(--electric); }
+.proof-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 3px; }
+.proof-divider { width: 1px; height: 36px; background: var(--border); }
+
+/* ── MARQUEE ── */
+.marquee-strip {
+  background: rgba(26,143,255,0.08);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  overflow: hidden;
+}
+.marquee-inner {
+  display: flex; gap: 4rem;
+  animation: marquee 22s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.marquee-item {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.marquee-item::before { content: '◆'; color: var(--electric); font-size: 0.5rem; }
+
+/* ── SECTION WRAPPER ── */
+section { padding: 6rem 4rem; }
+.section-kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.section-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  max-width: 520px;
+  font-weight: 300;
+}
+
+/* ── FEATURES ── */
+.features { background: #000c22; }
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5px;
+  margin-top: 4rem;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.feature-card {
+  background: #000c22;
+  padding: 2.5rem;
+  transition: background 0.2s;
+  position: relative;
+}
+.feature-card:hover { background: rgba(26,143,255,0.05); }
+.feature-icon {
+  width: 44px; height: 44px;
+  background: rgba(26,143,255,0.12);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(88,180,255,0.15);
+  font-size: 1.2rem;
+}
+.feature-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.feature-desc {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ── COACHES ── */
+.coaches { background: var(--navy); }
+.coaches-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.coach-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+}
+.coach-card:hover {
+  border-color: rgba(88,180,255,0.4);
+  background: rgba(26,143,255,0.04);
+}
+.coach-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--electric), var(--sky));
+}
+.coach-avatar-lg {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--royal), var(--electric));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1.25rem;
+  border: 2px solid rgba(88,180,255,0.3);
+}
+.coach-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+.coach-title {
+  font-size: 0.8rem;
+  color: var(--electric);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.coach-bio {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+.coach-creds {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.cred {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(88,180,255,0.1);
+  border: 1px solid rgba(88,180,255,0.2);
+  color: var(--ice);
+  letter-spacing: 0.02em;
+}
+
+/* ── PROGRAM TIERS ── */
+.programs { background: #000c22; }
+.programs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+}
+.program-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  background: rgba(255,255,255,0.02);
+  display: flex; flex-direction: column;
+  transition: all 0.2s;
+  position: relative;
+}
+.program-card:hover { border-color: rgba(88,180,255,0.4); transform: translateY(-3px); }
+.program-card.featured {
+  background: linear-gradient(160deg, rgba(26,143,255,0.15), rgba(0,85,200,0.08));
+  border-color: rgba(88,180,255,0.4);
+}
+.program-badge {
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--electric), var(--sky));
+  color: var(--navy);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 0 0 10px 10px;
+}
+.program-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+}
+.program-target {
+  font-size: 0.75rem;
+  color: var(--electric);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.program-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.25rem;
+}
+.program-price sup { font-size: 1rem; vertical-align: super; }
+.program-price sub { font-size: 0.85rem; font-weight: 400; color: rgba(255,255,255,0.4); vertical-align: baseline; }
+.program-period { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.75rem; }
+.program-features { list-style: none; flex: 1; margin-bottom: 1.75rem; }
+.program-features li {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; gap: 8px;
+}
+.program-features li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--electric);
+  flex-shrink: 0;
+}
+.program-cta {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Instrument Sans', sans-serif;
+  cursor: pointer;
+  border: none;
+}
+.cta-outline {
+  background: transparent;
+  color: var(--sky);
+  border: 1px solid rgba(88,180,255,0.35);
+}
+.cta-outline:hover { background: rgba(88,180,255,0.1); }
+.cta-solid {
+  background: linear-gradient(135deg, var(--electric), var(--sky));
+  color: var(--navy);
+}
+.cta-solid:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── PROOF / TESTIMONIALS ── */
+.proof-section { background: var(--navy); }
+.proof-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+}
+.testimonial {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: border-color 0.2s;
+}
+.testimonial:hover { border-color: rgba(88,180,255,0.35); }
+.stars {
+  display: flex; gap: 3px; margin-bottom: 1rem;
+}
+.star { color: var(--electric); font-size: 0.85rem; }
+.testimonial-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1.25rem;
+  font-style: italic;
+  font-weight: 300;
+}
+.testimonial-author { display: flex; align-items: center; gap: 10px; }
+.testimonial-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(26,143,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; color: var(--sky);
+  flex-shrink: 0;
+}
+.testimonial-name { font-size: 0.85rem; font-weight: 600; }
+.testimonial-role { font-size: 0.73rem; color: rgba(255,255,255,0.4); margin-top: 1px; }
+
+/* ── HOW IT WORKS ── */
+.how { background: #000c22; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 4rem;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 28px; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--electric), var(--sky), transparent);
+  opacity: 0.4;
+}
+.step { padding: 0 1.5rem; text-align: center; }
+.step-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(26,143,255,0.1);
+  border: 1px solid rgba(88,180,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--electric);
+  position: relative; z-index: 1;
+  background: #000c22;
+}
+.step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.step-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  margin: 0 4rem 6rem;
+  background: linear-gradient(135deg, var(--royal) 0%, var(--electric) 60%, var(--sky) 100%);
+  border-radius: 24px;
+  padding: 5rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'%3E%3Crect x='5' y='5' width='50' height='50'/%3E%3Crect x='15' y='15' width='30' height='30'/%3E%3Cline x1='30' y1='5' x2='30' y2='55'/%3E%3Cline x1='5' y1='30' x2='55' y2='30'/%3E%3C/g%3E%3C/svg%3E");
+}
+.cta-banner h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  position: relative;
+}
+.cta-banner p {
+  font-size: 1rem;
+  color: rgba(0,17,51,0.7);
+  margin-bottom: 2rem;
+  position: relative;
+  font-weight: 400;
+}
+.btn-navy {
+  background: var(--navy);
+  color: var(--sky);
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none; cursor: pointer;
+  font-family: 'Instrument Sans', sans-serif;
+  transition: all 0.2s;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-navy:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+/* ── FOOTER ── */
+footer {
+  background: #000820;
+  border-top: 1px solid var(--border);
+  padding: 3rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.footer-logo span { color: var(--sky); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 0.06; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 4rem; }
+  .features-grid, .programs-grid, .testimonials-grid, .coaches-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .steps::before { display: none; }
+  .cta-banner { margin: 0 1.5rem 4rem; padding: 3rem 2rem; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Court Performance<span>Lab</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Platform</a></li>
+    <li><a href="#coaches">Coaches</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#proof">Results</a></li>
+  </ul>
+  <a href="#programs" class="nav-cta">Apply Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <svg class="court-bg" viewBox="0 0 780 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="20" width="740" height="480" stroke="white" stroke-width="3"/>
+      <line x1="390" y1="20" x2="390" y2="500" stroke="white" stroke-width="2"/>
+      <line x1="20" y1="186" x2="780" y2="186" stroke="white" stroke-width="2"/>
+      <line x1="20" y1="334" x2="780" y2="334" stroke="white" stroke-width="2"/>
+      <line x1="20" y1="260" x2="780" y2="260" stroke="white" stroke-width="4"/>
+      <rect x="20" y="20" width="130" height="480" stroke="white" stroke-width="2"/>
+      <rect x="630" y="20" width="130" height="480" stroke="white" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-kicker">
+      <span class="kicker-dot"></span>
+      Los Angeles · Jack Kramer Club · Riviera Tennis Club
+    </div>
+
+    <h1>Your game.<br><em>Engineered.</em></h1>
+
+    <p class="hero-sub">Court Performance Lab is an elite private tennis coaching program built around data, video analysis, and a proven pathway — from junior development to Division I scholarships.</p>
+
+    <div class="hero-actions">
+      <a href="#programs" class="btn-primary">Book a Trial Session</a>
+      <a href="#features" class="btn-ghost">
+        See the platform
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-proof">
+      <div class="proof-stat">
+        <div class="proof-num">1<span>+</span></div>
+        <div class="proof-label">D1 Scholarship placed</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <div class="proof-num">8<span>+</span></div>
+        <div class="proof-label">Active students</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <div class="proof-num">USC</div>
+        <div class="proof-label">Women of Troy tennis</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <div class="proof-num">2</div>
+        <div class="proof-label">Expert coaches</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Technique Analysis</span>
+    <span class="marquee-item">Match Play Coaching</span>
+    <span class="marquee-item">Video Breakdown</span>
+    <span class="marquee-item">Parent Consultations</span>
+    <span class="marquee-item">UTR Development</span>
+    <span class="marquee-item">College Pathway Planning</span>
+    <span class="marquee-item">High Performance Juniors</span>
+    <span class="marquee-item">Jack Kramer Club</span>
+    <span class="marquee-item">Riviera Tennis Club</span>
+    <span class="marquee-item">Technique Analysis</span>
+    <span class="marquee-item">Match Play Coaching</span>
+    <span class="marquee-item">Video Breakdown</span>
+    <span class="marquee-item">Parent Consultations</span>
+    <span class="marquee-item">UTR Development</span>
+    <span class="marquee-item">College Pathway Planning</span>
+    <span class="marquee-item">High Performance Juniors</span>
+    <span class="marquee-item">Jack Kramer Club</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-kicker reveal">The Platform</div>
+  <div class="section-title reveal reveal-delay-1">Everything your player needs.<br>All in one place.</div>
+  <p class="section-sub reveal reveal-delay-2">Court Performance Lab gives coaches and parents full visibility into development — with AI-powered tools built for serious junior tennis.</p>
+
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎥</div>
+      <div class="feature-title">Video Analysis</div>
+      <p class="feature-desc">Upload match and practice footage. Get frame-by-frame technique breakdowns with AI-assisted coaching notes — serve mechanics, footwork, stroke patterns.</p>
+    </div>
+    <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Progress Dashboard</div>
+      <p class="feature-desc">Track UTR progression, session history, development goals, and tournament results. Every player has a live profile coaches and parents can view anytime.</p>
+    </div>
+    <div class="feature-card reveal reveal-delay-2">
+      <div class="feature-icon">💬</div>
+      <div class="feature-title">Parent Consultations</div>
+      <p class="feature-desc">Structured quarterly reviews, tournament planning sessions, and college pathway roadmaps — all documented, tracked, and accessible from the platform.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-title">Court Annotation</div>
+      <p class="feature-desc">Draw shot paths, mark positioning errors, and highlight tactical patterns directly on an interactive court diagram — shared instantly with players and parents.</p>
+    </div>
+    <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-icon">📅</div>
+      <div class="feature-title">Session Scheduling</div>
+      <p class="feature-desc">Book technique sessions, match play, and consultations in one place. Players get confirmation, session notes, and home practice assignments automatically.</p>
+    </div>
+    <div class="feature-card reveal reveal-delay-2">
+      <div class="feature-icon">✦</div>
+      <div class="feature-title">AI Coaching Assistant</div>
+      <p class="feature-desc">Get real-time coaching recommendations, drill suggestions, match debriefs, and parent communication drafts — powered by AI trained on elite tennis development.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div style="text-align:center">
+    <div class="section-kicker reveal">How it works</div>
+    <div class="section-title reveal reveal-delay-1" style="max-width:500px;margin:0 auto 0.5rem">From first session<br>to full development</div>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Apply & Assessment</div>
+      <p class="step-desc">We evaluate your player's current level, goals, and competitive history to place them in the right program.</p>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">02</div>
+      <div class="step-title">Custom Plan</div>
+      <p class="step-desc">Your coach builds a tailored development roadmap — technique priorities, tournament schedule, and weekly structure.</p>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">03</div>
+      <div class="step-title">Train & Track</div>
+      <p class="step-desc">Every session is documented with notes, video, and progress metrics — visible to coaches, players, and parents.</p>
+    </div>
+    <div class="step reveal reveal-delay-3">
+      <div class="step-num">04</div>
+      <div class="step-title">Results</div>
+      <p class="step-desc">UTR growth, tournament wins, and for our elite pathway students — the college recruitment process, fully guided.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COACHES -->
+<section class="coaches" id="coaches">
+  <div class="section-kicker reveal">Meet your coaches</div>
+  <div class="section-title reveal reveal-delay-1">Coached by people<br>who've done it.</div>
+  <p class="section-sub reveal reveal-delay-2">Two expert coaches, one mission: develop junior players with the discipline, technique, and mental game to compete at the highest level.</p>
+
+  <div class="coaches-grid">
+    <div class="coach-card reveal">
+      <div class="coach-avatar-lg">D</div>
+      <div class="coach-name">Coach Daniel</div>
+      <div class="coach-title">Head Coach · Founder</div>
+      <p class="coach-bio">A proven track record at the highest levels of junior development. Daniel coached his daughter Simone to a Division I scholarship with the USC Women of Troy tennis program — one of the most competitive programs in the country. His coaching philosophy centers on technical mastery, match-play intelligence, and parent partnership.</p>
+      <div class="coach-creds">
+        <span class="cred">D1 Scholarship Coach</span>
+        <span class="cred">USC Women of Troy</span>
+        <span class="cred">Jack Kramer Club</span>
+        <span class="cred">Riviera Tennis Club</span>
+        <span class="cred">High Performance</span>
+      </div>
+    </div>
+    <div class="coach-card reveal reveal-delay-1">
+      <div class="coach-avatar-lg">B</div>
+      <div class="coach-name">Coach Bill</div>
+      <div class="coach-title">Head Coach</div>
+      <p class="coach-bio">Bill brings elite-level analytical coaching to every session. Specializing in match-play tactics, serve mechanics, and UTR development strategy, he works closely with competitive juniors pushing into the 5.0–8.0 UTR range. His structured approach to pressure situations and mental game sets players apart at sectional and national events.</p>
+      <div class="coach-creds">
+        <span class="cred">Match Tactics</span>
+        <span class="cred">UTR Development</span>
+        <span class="cred">Sectional Events</span>
+        <span class="cred">Video Analysis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS / PRICING -->
+<section class="programs" id="programs">
+  <div class="section-kicker reveal">Programs & Pricing</div>
+  <div class="section-title reveal reveal-delay-1">Find your level.</div>
+  <p class="section-sub reveal reveal-delay-2">Three programs designed for where your player is — and where they're going.</p>
+
+  <div class="programs-grid">
+    <div class="program-card reveal">
+      <div class="program-name">Junior Development</div>
+      <div class="program-target">Ages 8–12 · UTR 1–4</div>
+      <div class="program-price"><sup>$</sup>350<sub>/mo</sub></div>
+      <div class="program-period">4 sessions per month</div>
+      <ul class="program-features">
+        <li>Weekly technique session (1 hr)</li>
+        <li>Player profile & progress tracking</li>
+        <li>Monthly parent update report</li>
+        <li>Home drill assignments</li>
+        <li>Video upload & review</li>
+      </ul>
+      <button class="program-cta cta-outline">Apply</button>
+    </div>
+
+    <div class="program-card featured reveal reveal-delay-1">
+      <div class="program-badge">Most Popular</div>
+      <div class="program-name">Competitive Track</div>
+      <div class="program-target">Ages 12–16 · UTR 4–7</div>
+      <div class="program-price"><sup>$</sup>650<sub>/mo</sub></div>
+      <div class="program-period">8 sessions per month</div>
+      <ul class="program-features">
+        <li>2× weekly sessions (technique + match play)</li>
+        <li>Video analysis with court annotation</li>
+        <li>Quarterly parent consultation</li>
+        <li>Tournament selection guidance</li>
+        <li>UTR growth strategy</li>
+        <li>AI coaching assistant access</li>
+      </ul>
+      <button class="program-cta cta-solid">Apply</button>
+    </div>
+
+    <div class="program-card reveal reveal-delay-2">
+      <div class="program-name">Elite Pathway</div>
+      <div class="program-target">Ages 14–18 · UTR 7+</div>
+      <div class="program-price"><sup>$</sup>1,100<sub>/mo</sub></div>
+      <div class="program-period">12+ sessions per month</div>
+      <ul class="program-features">
+        <li>3× weekly sessions</li>
+        <li>Full video analysis library</li>
+        <li>Monthly parent consultations</li>
+        <li>College recruiting roadmap</li>
+        <li>National tournament planning</li>
+        <li>Direct coach messaging</li>
+        <li>Priority booking</li>
+      </ul>
+      <button class="program-cta cta-outline">Apply</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="proof-section" id="proof">
+  <div class="proof-header">
+    <div>
+      <div class="section-kicker reveal">Results</div>
+      <div class="section-title reveal reveal-delay-1">What parents say.</div>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Bill's coaching completely transformed my daughter's game. The video analysis alone is worth it — she can actually see what she needs to fix. Her UTR jumped from 3.1 to 4.8 in eight months."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">LM</div>
+        <div>
+          <div class="testimonial-name">Lisa Morales</div>
+          <div class="testimonial-role">Parent · Maya Morales, age 12</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"The parent consultations are unlike anything we've had before. We actually have a real college recruiting timeline now, not just vague promises. Tyler has never been more motivated."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">JL</div>
+        <div>
+          <div class="testimonial-name">James Lee</div>
+          <div class="testimonial-role">Parent · Tyler Lee, age 14</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Knowing that Bill coached his own daughter to a USC scholarship tells you everything. He knows what it actually takes. Sofia is playing the best tennis of her life and we finally feel like we have a real plan."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">CR</div>
+        <div>
+          <div class="testimonial-name">Carmen Reyes</div>
+          <div class="testimonial-role">Parent · Sofia Reyes, age 16</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner reveal">
+  <h2>Ready to start?</h2>
+  <p>Limited spots available. Apply now to book your player's assessment session.</p>
+  <a href="#" class="btn-navy">Book an Assessment</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Court Performance<span>Lab</span></div>
+  <div class="footer-links">
+    <a href="#features">Platform</a>
+    <a href="#coaches">Coaches</a>
+    <a href="#programs">Programs</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Court Performance Lab · Los Angeles, CA</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth nav background
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60
+    ? 'rgba(0,12,34,0.95)'
+    : 'rgba(0,17,51,0.7)';
+});
+
+// Apply buttons
+document.querySelectorAll('.program-cta').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.textContent = 'Application sent ✓';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = btn.classList.contains('cta-solid') ? 'Apply' : 'Apply';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    }, 3000);
+  });
+});
+</script>
+</body>
+</html>
