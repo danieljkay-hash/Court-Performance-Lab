@@ -2,3 +2,5 @@ alpaca-py>=0.21.0
 pandas>=2.0.0
 numpy>=1.24.0
 python-dotenv>=1.0.0
+# Optional: only needed for `backtest --plot`
+matplotlib>=3.7.0

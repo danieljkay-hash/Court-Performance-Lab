@@ -34,26 +34,46 @@ require no funding).
 ## Usage
 
 ```bash
-# 1. Backtest the strategy on historical data (no keys needed for cached CSV;
-#    Alpaca keys needed to pull fresh data)
+# 1. Backtest a strategy on historical data (no keys needed for cached CSV;
+#    Alpaca keys needed to pull fresh data). Optionally save an equity curve.
 python -m trading_bot.cli backtest --symbol AAPL --start 2022-01-01 --end 2024-01-01
+python -m trading_bot.cli backtest --symbol AAPL --start 2022-01-01 --end 2024-01-01 \
+    --strategy rsi_reversion --plot equity.png
 
-# 2. Paper trade live (simulated money, real prices) — this is the default mode
-python -m trading_bot.cli run --symbols AAPL,MSFT
+# 2. Sweep MA-crossover parameters to see how sensitive results are
+python -m trading_bot.cli sweep --symbol AAPL --start 2022-01-01 --end 2024-01-01 \
+    --fasts 5,10,20,30 --slows 50,100,200 --metric sharpe
 
-# 3. Live trade (REAL money). Requires TRADING_MODE=live in .env and a typed
+# 3. Paper trade live (simulated money, real prices) — this is the default mode
+python -m trading_bot.cli run --symbols AAPL,MSFT --strategy momentum
+
+# 4. Live trade (REAL money). Requires TRADING_MODE=live in .env and a typed
 #    confirmation. Do not do this until paper results convince you.
 python -m trading_bot.cli run --symbols AAPL --live
 ```
 
-## Strategy
+## Strategies
 
-**Moving-average crossover** (`strategies/ma_crossover.py`):
-- Go long when the fast SMA crosses **above** the slow SMA.
-- Exit (flat) when the fast SMA crosses **below** the slow SMA.
-- Long-only by default (no shorting).
+Pick with `--strategy <name>`. All are **long-only learning baselines**, not
+proven edges. Add your own by subclassing `Strategy` in `strategies/base.py`
+and registering it in `strategies/registry.py`.
 
-Swap in your own logic by subclassing `Strategy` in `strategies/base.py`.
+| name | idea | does well in | gets hurt in |
+|------|------|--------------|--------------|
+| `ma_crossover` | long when fast SMA > slow SMA | persistent trends | choppy/sideways (whipsaws) |
+| `rsi_reversion` | buy oversold (RSI<30), exit on bounce | range-bound markets | strong trends (sells winners early) |
+| `momentum` | long when trailing return > 0 | trending regimes | flat/mean-reverting markets |
+
+Note how `ma_crossover` and `rsi_reversion` have **opposite** temperaments —
+that's deliberate. No single strategy wins in every regime.
+
+## Parameter sweep & overfitting
+
+`sweep` grid-searches `(fast, slow)` and ranks by Sharpe, return, or drawdown.
+The top row is the **best fit to that specific history** — not a prediction.
+A setting that's great at one exact value and bad all around it is overfit
+noise. Prefer a broad *plateau* of decent results over a lonely peak, and
+always re-test the winner on a different time window (out-of-sample).
 
 ## Risk controls (`risk.py`)
 
@@ -73,9 +93,14 @@ trading_bot/
   broker.py        # thin Alpaca trading wrapper
   risk.py          # position sizing + risk limits
   backtest.py      # vectorized backtester with fees/slippage
+  sweep.py         # MA-crossover parameter grid-search
+  plotting.py      # equity-curve plot (strategy vs buy-and-hold)
   strategies/
     base.py        # Strategy interface
+    registry.py    # name -> strategy factory
     ma_crossover.py
+    rsi_reversion.py
+    momentum.py
   bot.py           # live/paper run loop
   cli.py           # command-line entry point
 ```
